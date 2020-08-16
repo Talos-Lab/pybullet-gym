@@ -122,12 +122,16 @@ class BaseBulletEnv(gym.Env):
 
 
 class Camera:
-	def __init__(self,env):
-		self.env = env
-		pass
 
-	def move_and_look_at(self,i,j,k,x,y,z):
-		lookat = [x,y,z]
-		distance = 10
-		yaw = 10
-		self.env._p.resetDebugVisualizerCamera(distance, yaw, -20, lookat)
+  def __init__(self, env):
+    self.env = env
+    pass
+
+  def move_and_look_at(self, i, j, k, x, y, z):
+    lookat = [x, y, z]
+    camInfo = self.env._p.getDebugVisualizerCamera()
+    
+    distance = camInfo[10]
+    pitch = camInfo[9]
+    yaw = camInfo[8]
+    self.env._p.resetDebugVisualizerCamera(distance, yaw, pitch, lookat)		
