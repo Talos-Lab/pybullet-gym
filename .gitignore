@@ -102,3 +102,6 @@ ENV/
 
 # intellij idea
 .idea/
+
+# VS Code
+.DS_Store
